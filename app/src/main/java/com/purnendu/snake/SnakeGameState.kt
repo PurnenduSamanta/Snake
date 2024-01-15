@@ -3,8 +3,8 @@ package com.purnendu.snake
 import kotlin.random.Random
 
 data class SnakeGameState(
-    val xAxisGridSize: Int = 20,
-    val yAxisGridSize: Int = 30,
+    val xAxisGridSize: Int = myXAxisGridSize,
+    val yAxisGridSize: Int = myYAxisGridSize,
     val direction: Direction =Direction.RIGHT,
     val snake:List<Coordinate> = listOf(Coordinate(x=5,y=5)),
     val food:Coordinate = generateRandomFoodCoordinates(),

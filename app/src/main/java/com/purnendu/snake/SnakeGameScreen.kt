@@ -105,7 +105,7 @@ fun SnakeGameScreen(
                     }
             ) {
 
-                val cellSize = size.width / 20
+                val cellSize = size.width / myXAxisGridSize
 
                 drawGameBoard(
                     cellSize = cellSize,
