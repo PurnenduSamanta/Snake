@@ -22,9 +22,9 @@ class SnakeGameViewModel : ViewModel() {
                 viewModelScope.launch {
                     while (state.value.gameState == GameState.STARTED) {
                         val delayMillis = when (state.value.snake.size) {
-                            in 1..5 -> 120L
-                            in 6..10 -> 110L
-                            else -> 100L
+                            in 1..5 -> 160L
+                            in 6..10 -> 150L
+                            else -> 140L
                         }
                         delay(delayMillis)
                         _state.value = updateGame(state.value)
@@ -64,14 +64,14 @@ class SnakeGameViewModel : ViewModel() {
         }
 
         if (newHead.x < 1) {
-            newHead = Coordinate(xAxisGridSize-1,newHead.y) // Wrap around to the right side
-        } else if (newHead.x >= (xAxisGridSize-1)) {
+            newHead = Coordinate(xAxisGridSize-2,newHead.y) // Wrap around to the right side
+        } else if (newHead.x > (xAxisGridSize-2)) {
             newHead = Coordinate(1,newHead.y) // Wrap around to the left side
         }
 
         if (newHead.y < 1) {
-            newHead = Coordinate(newHead.x,yAxisGridSize-1) // Wrap around to the bottom
-        } else if (newHead.y >= (yAxisGridSize-1)) {
+            newHead = Coordinate(newHead.x,yAxisGridSize-2) // Wrap around to the bottom
+        } else if (newHead.y > (yAxisGridSize-2)) {
             newHead = Coordinate(newHead.x,1) // Wrap around to the top
         }
 

@@ -170,6 +170,7 @@ fun SnakeGameScreen(
             Text(
                 modifier = Modifier.padding(16.dp),
                 text = "Game Over",
+                color = RoyalBlue,
                 style = MaterialTheme.typography.displayMedium
             )
         }

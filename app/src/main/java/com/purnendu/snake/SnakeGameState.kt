@@ -6,7 +6,7 @@ data class SnakeGameState(
     val xAxisGridSize: Int = myXAxisGridSize,
     val yAxisGridSize: Int = myYAxisGridSize,
     val direction: Direction =Direction.RIGHT,
-    val snake:List<Coordinate> = listOf(Coordinate(x=5,y=5)),
+    val snake:List<Coordinate> = listOf(Coordinate(x=myXAxisGridSize/2,y=myYAxisGridSize/2)),
     val food:Coordinate = generateRandomFoodCoordinates(),
     val isGameOver: Boolean = false,
     val gameState: GameState = GameState.IDLE
@@ -16,8 +16,8 @@ data class SnakeGameState(
         fun generateRandomFoodCoordinates():Coordinate
         {
             return Coordinate(
-                x= Random.nextInt(from = 1, until = 19),
-                y= Random.nextInt(from = 1, until =29)
+                x= Random.nextInt(from = 1, until = myXAxisGridSize-1),
+                y= Random.nextInt(from = 1, until = myYAxisGridSize-1)
             )
         }
     }
