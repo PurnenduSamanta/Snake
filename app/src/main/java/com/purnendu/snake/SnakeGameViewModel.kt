@@ -56,17 +56,29 @@ class SnakeGameViewModel : ViewModel() {
         val yAxisGridSize = currentGame.yAxisGridSize
 
         //Update movement of snake
-        val newHead = when (currentGame.direction) {
+        var newHead = when (currentGame.direction) {
             Direction.UP -> Coordinate(x = head.x, y = (head.y - 1))
             Direction.DOWN -> Coordinate(x = head.x, y = (head.y + 1))
             Direction.LEFT -> Coordinate(x = head.x - 1, y = (head.y))
             Direction.RIGHT -> Coordinate(x = head.x + 1, y = (head.y))
         }
 
+        if (newHead.x < 1) {
+            newHead = Coordinate(xAxisGridSize-1,newHead.y) // Wrap around to the right side
+        } else if (newHead.x >= (xAxisGridSize-1)) {
+            newHead = Coordinate(1,newHead.y) // Wrap around to the left side
+        }
+
+        if (newHead.y < 1) {
+            newHead = Coordinate(newHead.x,yAxisGridSize-1) // Wrap around to the bottom
+        } else if (newHead.y >= (yAxisGridSize-1)) {
+            newHead = Coordinate(newHead.x,1) // Wrap around to the top
+        }
+
         //Check if the snake collides with itself or goes out of bounds
         if (
-            currentGame.snake.contains(newHead) ||
-            !isWithinBounds(newHead, xAxisGridSize, yAxisGridSize)
+            currentGame.snake.contains(newHead)
+            //|| !isWithinBounds(newHead, xAxisGridSize, yAxisGridSize)
         ) {
             return currentGame.copy(isGameOver = true)
         }
