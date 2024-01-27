@@ -16,8 +16,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.purnendu.snake.ui.theme.SnakeTheme
 
 
-//https://github.com/CodeInKotLang/SnakeGame
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
